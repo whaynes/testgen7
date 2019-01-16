@@ -1,0 +1,28 @@
+default namespace = "http://www.filemaker.com/fmpdsoresult"
+namespace xsi = "http://www.w3.org/2001/XMLSchema-instance"
+
+start =
+  element FMPDSORESULT {
+    attribute xsi:schemaLocation { text },
+    element ERRORCODE { xsd:integer },
+    element DATABASE { xsd:NCName },
+    element LAYOUT { empty },
+    element ROW {
+      attribute MODID { xsd:integer },
+      attribute RECORDID { xsd:integer },
+      element ans { xsd:NMTOKEN },
+      element ans_a { text },
+      element ans_b { text },
+      element ans_c { text },
+      element ans_d { text },
+      element illustration { DATA+ },
+      element stem { text },
+      element Sort_Code { DATA },
+      element MMA_Category { DATA },
+      element Excel_Line { text },
+      element Chapter { text },
+      element ABS_VER { xsd:NMTOKEN },
+      element qnum { xsd:integer }
+    }+
+  }
+DATA = element DATA { text }
