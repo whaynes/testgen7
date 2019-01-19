@@ -31,7 +31,6 @@ class DOCXFormatter
   rescue NoMethodError # traps directories, #<NoMethodError: undefined method `read' for Zip::NullInputStream:Module>
   end
 
-  private
 
   class DOCX_part
     attr_accessor :document, :name
@@ -61,7 +60,7 @@ class DOCXFormatter
 
     def initialize(exam)
       super 'word/document.xml' # get the template document
-      add_answer_key(exam) if exam.show_answers
+      add answer_key(exam) if exam.show_answers
       add questions(exam)
       add illustrations(exam) if exam.show_pics # adds references to the text, must still add media and rels
       add sect_br
@@ -71,9 +70,6 @@ class DOCXFormatter
       body = @document.at('//w:body')
       body.add_child xml
     end
-
-    private # helper methods to build the document
-
 
     def sect_br
       Nokogiri::XML.fragment(<<~SECTIONBREAK)
@@ -140,8 +136,8 @@ class DOCXFormatter
       TABLEROW
     end
 
-    def answer_table_header
-      Nokogiri::XML.fragment(<<~HEADER)
+    def answer_key(exam)
+      xml = Nokogiri::XML.fragment(<<~HEADER)
         <w:tbl>
         	<w:tblPr>
         		<w:tblStyle w:val="TableNormal" /> <w:tblW w:type="pct" w:w="0" /> 
@@ -217,10 +213,12 @@ class DOCXFormatter
         	</w:tr>
         </w:tbl>
       HEADER
-    end
-
-    def answer_table_section_break
-      Nokogiri::XML.fragment(<<~BREAK)
+      table = xml.at_xpath '*[1]'
+      exam.qlist.each_with_index do |qnum, i|
+        question = Question.new(qnum)
+        table.add_child tr(i, question)
+      end
+      xml.add_child Nokogiri::XML.fragment(<<~BREAK)
         <w:p>
         	<w:pPr>
         		<w:sectPr>
@@ -229,16 +227,8 @@ class DOCXFormatter
         	</w:pPr>
         </w:p>
       BREAK
-    end
 
-    def add_answer_key(exam)
-      add answer_table_header
-      tbl_element = @document.at('//w:tbl')
-      exam.qlist.each_with_index do |qnum, i|
-        question = Question.new(qnum)
-        tbl_element.add_child tr(i, question)
-      end
-      add answer_table_section_break
+      xml
     end
 
     def questions(exam)
