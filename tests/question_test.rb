@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 
 class QuestionsTest < Minitest::Test
-
+  def test_question_database_exists
+    assert File.exist?(Question::QUESTIONS_DB)
+  end
 
   def test_question_can_get_ans
-    assert_includes ['A', 'B', 'C', 'D'], Question.new(100)[:ans]
+    assert_includes %w[A B C D], Question.new(100)[:ans]
   end
 
   def test_question_can_get_html
@@ -16,7 +20,7 @@ class QuestionsTest < Minitest::Test
   end
 
   def test_question_returns_empty_string_when_theres_no_illustration
-    assert_equal "", Question.new(1000)[:illustration]
+    assert_equal '', Question.new(1000)[:illustration]
   end
 
   def test_question_can_get_docx
@@ -28,4 +32,5 @@ class QuestionsTest < Minitest::Test
       Question.new(1000)[:bogus]
     end
   end
+
 end

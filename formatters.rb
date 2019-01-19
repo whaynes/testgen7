@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'docx_formatter'
 
 class HTMLFormatter
@@ -19,9 +21,9 @@ end
 class ParamsFormatter < TextFormatter
   # this class returns the cgi parameters and the questions/answers/illustrations
   def build(exam)
-    result = ["CGI Parameters:"]
+    result = ['CGI Parameters:']
     result << exam.params.pretty_inspect
-    exam.qlist.each_with_index {|q, i| result << "%5d. | %5d | %s | %s " % [i + 1, q, exam.alist[i], exam.ilist[i]]}
+    exam.qlist.each_with_index { |q, i| result << format('%5d. | %5d | %s | %s ', i + 1, q, exam.alist[i], exam.ilist[i]) }
     result.join "\n"
   end
 end
@@ -43,13 +45,15 @@ class SourceFormatter < TextFormatter
   def page_header(exam)
     labels = exam.labels
     header = Nokogiri::XML::Builder.new do |xml|
-      xml.header do |header|
-        xml.div {
+      xml.header do |_header|
+        xml.div do
           xml.div.left labels[0]
-          xml.div.right labels[2]}
-        xml.div {
+          xml.div.right labels[2]
+        end
+        xml.div do
           xml.div.left labels[1]
-          xml.div.right labels[3]}
+          xml.div.right labels[3]
+        end
       end
     end
     header.doc.to_xhtml
@@ -57,44 +61,44 @@ class SourceFormatter < TextFormatter
 
   def answers(exam)
     answers = Nokogiri::XML::Builder.new do |xml|
-      xml.div(:id => 'answers') do |sec|
+      xml.div(id: 'answers') do |sec|
         sec.h3 'Answer Key'
-        sec.table {|table|
-          table.thead {|thead|
+        sec.table do |table|
+          table.thead do |thead|
             thead.th 'Questions'
             thead.th 'MEWB No.'
             thead.th 'Answer'
             thead.th 'Illustration'
-          }
-          table.tbody {|tbody|
+          end
+          table.tbody do |tbody|
             exam.qlist.each_with_index do |qnum, i|
               question = Question.new(qnum)
-              tbody.tr {|tr|
+              tbody.tr do |tr|
                 tr.td "#{i + 1}."
                 tr.td question.qnum
                 tr.td question[:ans]
                 tr.td question[:illustration]
-              }
+              end
             end
-          }
-        }
+          end
+        end
       end
     end
     answers.doc.to_xhtml
   end
 
   def question(q, i)
-    #gets question from database, returns nokogiri node
-    question = Question.new(q)[:html] #get <li><stem><choices></li>
-    question.gsub!(/!-- 1\./, "!--") #remove 1. from comment
+    # gets question from database, returns nokogiri node
+    question = Question.new(q)[:html] # get <li><stem><choices></li>
+    question.gsub!(/!-- 1\./, '!--') # remove 1. from comment
     question = Nokogiri::XML::DocumentFragment.parse question
-    question.at_css('li')[:class] = "question #{i + 1}" #add css class
+    question.at_css('li')[:class] = "question #{i + 1}" # add css class
     question
   end
 
   def questions(exam)
-    #returns a <div> node containing <li> elements, each containing the stem and choices of a question
-    sec = Nokogiri::XML::Node.new "section", Nokogiri::XML::Document.new
+    # returns a <div> node containing <li> elements, each containing the stem and choices of a question
+    sec = Nokogiri::XML::Node.new 'section', Nokogiri::XML::Document.new
     sec[:id] = 'test'
     sec.add_child '<ol>'
     ol = sec.at_css 'ol'
@@ -107,15 +111,15 @@ class SourceFormatter < TextFormatter
   def illustrations(exam)
     ilist = exam.ilist.reject(&:empty?).uniq.sort
     illustrations = Nokogiri::XML::Builder.new do |xml|
-      xml.div(:id => 'pics') {|sec|
-        sec.h3 "Illustrations"
+      xml.div(id: 'pics') do |sec|
+        sec.h3 'Illustrations'
         ilist.each do |img|
-          sec.figure {|fig|
-            fig.img(:src => "#{Request::PATH_TO_IMAGES}#{img}.png")
+          sec.figure do |fig|
+            fig.img(src: "#{Request::PATH_TO_IMAGES}#{img}.png")
             fig.figcaption img
-          }
+          end
         end
-      }
+      end
     end
     illustrations.doc.to_xhtml
   end
@@ -133,7 +137,7 @@ class XMLFormatter < TextFormatter
   def build(exam)
     question_bank = Nokogiri::XML(File.open(Request::PATH_TO_XML))
     doc = Nokogiri::XML('<exam/>')
-    exam.qlist.each do |q| #add questions to exam
+    exam.qlist.each do |q| # add questions to exam
       question = question_bank.xpath("//fmp:ROW[fmp:qnum = #{q}]", 'fmp' => 'http://www.filemaker.com/fmpdsoresult')
       doc.root.add_child(question)
     end
@@ -144,10 +148,11 @@ end
 class MMDFormatter < TextFormatter
   # this class converts the xml version to markdown
   def build(exam)
-    xml = Nokogiri::XML::parse XMLFormatter.new.build(exam)
+    xml = Nokogiri::XML.parse XMLFormatter.new.build(exam)
     xslt = Nokogiri::XSLT(File.read('./xsl/fmp2md.xsl'))
     mmd = xslt.apply_to(xml, Nokogiri::XSLT.quote_params(
-        ['include_key', exam.show_answers, 'include_illustrations', exam.show_pics]))
+                               ['include_key', exam.show_answers, 'include_illustrations', exam.show_pics]
+                             ))
     <<~meta + mmd
       ---
       title: MEWB Exam
@@ -168,11 +173,11 @@ class BBFormatter < TextFormatter
     xml = Nokogiri::XML(xhtml)
     xslt = Nokogiri::XSLT File.read('./xsl/html2bb.xsl')
     doc = xslt.apply_to(xml, Nokogiri::XSLT.quote_params(['include_illustrations', exam.show_pics]))
-    munge(doc).encode(Encoding::ISO_8859_1) #return value, note blackboard expects windows latin 1 encoding
+    munge(doc).encode(Encoding::ISO_8859_1) # return value, note blackboard expects windows latin 1 encoding
   end
 
   def munge(bb)
-    bb.gsub(/₂/, '<sub>2</sub>') #replace unicode subscript 2 which cant be represented in encoding 8859-1
+    bb.gsub(/₂/, '<sub>2</sub>') # replace unicode subscript 2 which cant be represented in encoding 8859-1
   end
 
   def make(exam)
