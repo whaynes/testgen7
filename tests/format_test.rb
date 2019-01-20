@@ -125,6 +125,7 @@ end
 
 class DOCXTest < Minitest::Test
   def setup
+    @schema = Nokogiri::XML::Schema(File.open("/Applications/Oxygen\ XML\ Editor/frameworks/ooxml/schemas/xsd/mainOffice.xsd"))
     @exam = Request.new('labels' => ['', 'Name_____________', '', 'Jan 16, 2019'],
                         'key' => ['on'],
                         'illustrations' => ['on'],
@@ -132,12 +133,6 @@ class DOCXTest < Minitest::Test
                             ["13609\r\n1658\r\n11853\r\n7379\r\n835\r\n395\r\n12667\r\n12108\r\n1509\r\n2664\r\n"],
                         'Make_Exam' => ['Make Exam'],
                         'format' => ['docx'])
-  end
-
-  def test_docx_document_is_well_formed
-    doc = DOCXFormatter::Word_document_part.new(@exam).document
-    p =  Nokogiri::XML(doc.to_s) { |config| config.options = Nokogiri::XML::ParseOptions::STRICT }
-    assert_equal [], doc.errors
   end
 
 
@@ -371,5 +366,12 @@ class DOCXTest < Minitest::Test
       </Types>
     XML
     assert_equal result, DOCXFormatter::Content_types_part.new(@exam).to_s
+  end
+
+  def test_docx_document_validates
+    doc = DOCXFormatter::Word_document_part.new(@exam).document
+    @schema.validate(doc).each do |error|
+      assert_empty error
+    end
   end
 end
