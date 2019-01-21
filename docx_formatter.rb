@@ -252,7 +252,7 @@ class DOCXFormatter
             xml['w'].r do
               xml['w'].drawing do
                 xml['wp'].inline do
-                  xml['wp'].extent(cx: png.width, cy: png.height)
+                  xml['wp'].extent(cx: png.width.to_s, cy: png.height.to_s)
                   xml['wp'].docPr(id: '1', name: png.name_ext.to_s)
                   xml['a'].graphic do
                     xml['a'].graphicData(uri: 'http://schemas.openxmlformats.org/drawingml/2006/picture') do
@@ -394,8 +394,12 @@ end # class
 class Illustration
   attr_reader :img, :img_path, :name, :name_ext, :width, :height
   # see https://startbigthinksmall.wordpress.com/2010/01/04/points-inches-and-emus-measuring-units-in-office-open-xml
-  EMU_per_inch = 12_700 * 72
+  POINTS_per_inch = 72
+  POINTS_per_column = 1
+  EMU_per_point = 12_700
+  EMU_per_inch = POINTS_per_inch * EMU_per_point
   PAGE_WIDTH = 6 * EMU_per_inch
+  PAGE_HEIGHT = 8 * EMU_per_inch
 
   def initialize(name)
     @img_path = "#{Request::DOCUMENT_ROOT}/#{Request::PATH_TO_IMAGES}#{name}.png"
@@ -403,14 +407,20 @@ class Illustration
     @name = name
     @name_ext = "#{name}.png"
 
-    # for docx, if image is wider than page, pin it to page width, otherwise use natural width
-    # if resizing, maintain aspect ratio
-    if @img.rows * 12_700 > PAGE_WIDTH
+    # for docx, if image is wider and/or taller than the page, scale it to fit
+    # These questions have images which need scaling 11762, 9524, 2797, 14219
+
+    @width = @img.columns * POINTS_per_column * EMU_per_point
+    @height = @img.rows *  POINTS_per_column * EMU_per_point
+
+    if @width > PAGE_WIDTH then
+      @height = @height * PAGE_WIDTH/@width
       @width = PAGE_WIDTH
-      @height = (@width * @img.rows / @img.columns).round
-    else
-      @width = @img.rows * 12_700
-      @height = @img.columns * 12_700
+    end
+
+    if @height > PAGE_HEIGHT then
+      @width = @width * PAGE_HEIGHT/@height
+      @height = PAGE_HEIGHT
     end
   end
 end

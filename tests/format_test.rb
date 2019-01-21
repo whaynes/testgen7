@@ -125,7 +125,7 @@ end
 
 class DOCXTest < Minitest::Test
   def setup
-    @schema = Nokogiri::XML::Schema(File.open("/Applications/Oxygen\ XML\ Editor/frameworks/ooxml/schemas/xsd/mainOffice.xsd"))
+
     @exam = Request.new('labels' => ['', 'Name_____________', '', 'Jan 16, 2019'],
                         'key' => ['on'],
                         'illustrations' => ['on'],
@@ -369,8 +369,10 @@ class DOCXTest < Minitest::Test
   end
 
   def test_docx_document_validates
+    skip "Skipped because validation takes too long.  Unskip to check."
     doc = DOCXFormatter::Word_document_part.new(@exam).document
-    @schema.validate(doc).each do |error|
+    schema = Nokogiri::XML::Schema(File.open("/Applications/Oxygen\ XML\ Editor/frameworks/ooxml/schemas/xsd/mainOffice.xsd"))
+    schema.validate(doc).each do |error|
       assert_empty error
     end
   end
