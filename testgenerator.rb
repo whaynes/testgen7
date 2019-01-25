@@ -12,7 +12,7 @@ require 'rmagick'
 require_relative 'Formatters'
 
 DOCUMENT_ROOT = '/Library/WebServer/Documents/'
-PATH_TO_CSS = '/sieve/css/exam.css'
+PATH_TO_CSS = '/mewb7/css/exam.css'
 PATH_TO_IMAGES = '/mewb7/illustrations/fullsize/'
 PATH_TO_XML = 'questions/MEWB7.xml'
 PATH_TO_MARKDOWN_XSLT = 'xsl/fmp2md.xsl'
