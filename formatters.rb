@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 
 class HTMLFormatter
@@ -9,11 +8,6 @@ class HTMLFormatter
   end
 end
 
-class ErrorFormatter < HTMLFormatter
-  def build(error)
-    puts error
-  end
-end
 
 class TextFormatter
   # descendants of this class return text to the browser
@@ -22,6 +16,13 @@ class TextFormatter
     puts build(exam)
   end
 end
+
+class ErrorFormatter < TextFormatter
+  def build(error)
+    "MEWB Error:\n #{error}"
+  end
+end
+
 
 class ParamsFormatter < TextFormatter
   # this class returns the cgi parameters and the questions/answers/illustrations
@@ -140,7 +141,7 @@ end
 class XMLFormatter < TextFormatter
   # this class builds an xml version of the exam
   def build(exam)
-    question_bank = Nokogiri::XML(File.open(Request::PATH_TO_XML))
+    question_bank = Nokogiri::XML(File.open(PATH_TO_XML))
     doc = Nokogiri::XML('<exam/>')
     exam.qlist.each do |q| # add questions to exam
       question = question_bank.xpath("//fmp:ROW[fmp:qnum = #{q}]", 'fmp' => 'http://www.filemaker.com/fmpdsoresult')
@@ -594,7 +595,7 @@ class Illustration
   PAGE_HEIGHT = 8 * EMU_per_inch
 
   def initialize(name)
-    @img_path = "#{Request::DOCUMENT_ROOT}/#{Request::PATH_TO_IMAGES}#{name}.png"
+    @img_path = "#{DOCUMENT_ROOT}/#{PATH_TO_IMAGES}#{name}.png"
     @img = Magick::Image.read(@img_path)[0]
     @name = name
     @name_ext = "#{name}.png"
