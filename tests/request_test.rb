@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../request'
+require_relative '../testgenerator'
 # frozen_string_literal: true
 
 # pass some params to Request to debug.  If no parameter passed, this will look for params from cgi, or from command line

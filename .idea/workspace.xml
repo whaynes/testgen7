@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4e15a4d8-2b1b-4734-8e7a-688c535c382a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docx_formatter.rb" beforeDir="false" afterPath="$PROJECT_DIR$/docx_formatter.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docx_formatter.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formatters.rb" beforeDir="false" afterPath="$PROJECT_DIR$/formatters.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/open.rb" beforeDir="false" afterPath="$PROJECT_DIR$/open.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/question.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/request.rb" beforeDir="false" afterPath="$PROJECT_DIR$/testgenerator.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/format_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/format_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/request_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/request_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xsltproc.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +30,10 @@
     <SUITE FILE_PATH="coverage/sieve@test_illustrations_html__sieve.rcov" NAME="test_illustrations_html: sieve Coverage Results" MODIFIED="1547089589334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
     <SUITE FILE_PATH="coverage/sieve@test_html_formatter__sieve.rcov" NAME="test_html_formatter: sieve Coverage Results" MODIFIED="1547581645479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
     <SUITE FILE_PATH="coverage/sieve@test_docx_answerkey_part__sieve.rcov" NAME="test_docx_answerkey_part: sieve Coverage Results" MODIFIED="1547680138563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
-    <SUITE FILE_PATH="coverage/sieve@All_tests.rcov" NAME="All tests Coverage Results" MODIFIED="1548100713688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
+    <SUITE FILE_PATH="coverage/sieve@open.rcov" NAME="open Coverage Results" MODIFIED="1548441642437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
+    <SUITE FILE_PATH="coverage/sieve@All_tests.rcov" NAME="All tests Coverage Results" MODIFIED="1548444219207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
     <SUITE FILE_PATH="coverage/sieve@test_question_invalid_qunum__sieve.rcov" NAME="test_question_invalid_qunum: sieve Coverage Results" MODIFIED="1547767163001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
+    <SUITE FILE_PATH="coverage/sieve@test_format_can_find_css__sieve.rcov" NAME="test_format_can_find_css: sieve Coverage Results" MODIFIED="1548442647398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
     <SUITE FILE_PATH="coverage/sieve@.rcov" NAME=" Coverage Results" MODIFIED="1546732385309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" MODULE_NAME="sieve" />
     <SUITE FILE_PATH="coverage/sieve@test_subscript_munging__sieve.rcov" NAME="test_subscript_munging: sieve Coverage Results" MODIFIED="1547087189267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
     <SUITE FILE_PATH="coverage/sieve@test_docx_content_types_part__sieve.rcov" NAME="test_docx_content_types_part: sieve Coverage Results" MODIFIED="1548002246557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sieve" />
@@ -43,42 +52,61 @@
     <favorites_list name="sieve" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/format_test.rb">
+        <entry file="file://$PROJECT_DIR$/open.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="374" column="14" selection-start-line="374" selection-start-column="14" selection-end-line="374" selection-end-column="14" />
+            <state relative-caret-position="180">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/request_test.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="48" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testgenerator.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding>
-                <element signature="e#88#4461#0" />
+                <element signature="e#577#1281#0" />
+                <element signature="e#1287#1705#0" />
+                <element signature="e#1909#2487#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/question_test.rb">
+        <entry file="file://$PROJECT_DIR$/tests/format_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="54">
+              <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/question.rb">
+        <entry file="file://$PROJECT_DIR$/formatters.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docx_formatter.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="410" column="77" selection-start-line="410" selection-start-column="77" selection-end-line="410" selection-end-column="77" />
+            <state relative-caret-position="195">
+              <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+              <folding>
+                <element signature="e#3638#3791#0" />
+                <element signature="e#3793#4232#0" />
+                <element signature="e#4234#4894#0" />
+                <element signature="e#4896#5684#0" />
+                <element signature="e#5768#18865#0" />
+                <element signature="e#18875#19977#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,15 +150,17 @@
         <option value="$PROJECT_DIR$/sieve_test.rb" />
         <option value="$PROJECT_DIR$/request_test.rb" />
         <option value="$PROJECT_DIR$/questions_test.rb" />
-        <option value="$PROJECT_DIR$/open.rb" />
         <option value="$PROJECT_DIR$/tests/questions_test.rb" />
         <option value="$PROJECT_DIR$/tests/request_test.rb" />
-        <option value="$PROJECT_DIR$/formatters.rb" />
         <option value="$PROJECT_DIR$/request.rb" />
         <option value="$PROJECT_DIR$/question.rb" />
         <option value="$PROJECT_DIR$/tests/question_test.rb" />
-        <option value="$PROJECT_DIR$/tests/format_test.rb" />
+        <option value="$PROJECT_DIR$/TestGenerator.rb" />
+        <option value="$PROJECT_DIR$/open.rb" />
         <option value="$PROJECT_DIR$/docx_formatter.rb" />
+        <option value="$PROJECT_DIR$/testgenerator.rb" />
+        <option value="$PROJECT_DIR$/tests/format_test.rb" />
+        <option value="$PROJECT_DIR$/formatters.rb" />
       </list>
     </option>
   </component>
@@ -142,7 +172,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="34" />
-    <option name="y" value="215" />
+    <option name="y" value="23" />
     <option name="width" value="1720" />
     <option name="height" value="875" />
   </component>
@@ -164,11 +194,6 @@
               <item name="sieve" type="b2602c69:ProjectViewProjectNode" />
               <item name="sieve" type="462c0819:PsiDirectoryNode" />
               <item name="questions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sieve" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sieve" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sieve" type="b2602c69:ProjectViewProjectNode" />
@@ -207,6 +232,24 @@
     </option>
   </component>
   <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.All tests">
+    <configuration name="open" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+      <module name="sieve" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/open.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <method v="2" />
+    </configuration>
     <configuration name="All tests" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
       <module name="sieve" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
@@ -317,35 +360,6 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_docx_document_part: sieve" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
-      <module name="sieve" />
-      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/tests/format_test.rb" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_docx_document_part" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test_docx_document_validates: sieve" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
       <module name="sieve" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
@@ -404,7 +418,7 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_question_invalid_qunum: sieve" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
+    <configuration name="test_format_can_find_css: sieve" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
       <module name="sieve" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -423,9 +437,9 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/tests/question_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/tests/format_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_question_invalid_qunum" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_format_can_find_css" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
@@ -463,22 +477,22 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Ruby.open" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.All tests" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.Run request_test" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.test_subscript_munging: sieve" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_content_types_part: sieve" />
-      <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_document_part: sieve" />
-      <item itemvalue="Test::Unit/Shoulda/Minitest.test_question_invalid_qunum: sieve" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_validates: sieve" />
       <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_document_validates: sieve" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.test_format_can_find_css: sieve" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test_format_can_find_css: sieve" />
+        <item itemvalue="Ruby.open" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_document_validates: sieve" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_validates: sieve" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_content_types_part: sieve" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.test_question_invalid_qunum: sieve" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.test_docx_document_part: sieve" />
       </list>
     </recent_temporary>
   </component>
@@ -507,7 +521,8 @@
       <workItem from="1547581216222" duration="42906000" />
       <workItem from="1547764455849" duration="26377000" />
       <workItem from="1547943825468" duration="10895000" />
-      <workItem from="1548101173736" duration="312000" />
+      <workItem from="1548101173736" duration="346000" />
+      <workItem from="1548436745885" duration="5461000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring build_document">
       <created>1547679337504</created>
@@ -520,39 +535,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_docx_document_validates__sieve - 2019.01.21 at 14h 39m 15s.xml">
-      <configuration name="test_docx_document_validates: sieve" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_docx_document_validates__sieve - 2019.01.21 at 14h 40m 41s.xml">
-      <configuration name="test_docx_document_validates: sieve" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_docx_document_validates__sieve - 2019.01.21 at 14h 51m 56s.xml">
-      <configuration name="test_docx_document_validates: sieve" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_docx_document_validates__sieve - 2019.01.21 at 14h 52m 15s.xml">
-      <configuration name="test_docx_document_validates: sieve" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_docx_document_validates__sieve - 2019.01.21 at 14h 53m 32s.xml">
-      <configuration name="test_docx_document_validates: sieve" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_tests - 2019.01.21 at 14h 55m 11s.xml">
+    <history-entry file="All_tests - 2019.01.25 at 13h 43m 02s.xml">
       <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_tests - 2019.01.21 at 14h 55m 44s.xml">
+    <history-entry file="All_tests - 2019.01.25 at 13h 46m 14s.xml">
       <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_tests - 2019.01.21 at 14h 56m 12s.xml">
+    <history-entry file="All_tests - 2019.01.25 at 13h 49m 38s.xml">
       <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_tests - 2019.01.21 at 14h 56m 36s.xml">
+    <history-entry file="All_tests - 2019.01.25 at 13h 51m 39s.xml">
       <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_tests - 2019.01.21 at 14h 58m 34s.xml">
+    <history-entry file="All_tests - 2019.01.25 at 13h 54m 41s.xml">
+      <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_format_can_find_css__sieve - 2019.01.25 at 13h 57m 12s.xml">
+      <configuration name="test_format_can_find_css: sieve" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_format_can_find_css__sieve - 2019.01.25 at 13h 57m 27s.xml">
+      <configuration name="test_format_can_find_css: sieve" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_tests - 2019.01.25 at 13h 57m 33s.xml">
+      <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_tests - 2019.01.25 at 13h 57m 46s.xml">
+      <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_tests - 2019.01.25 at 13h 57m 56s.xml">
       <configuration name="All tests" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204929000" />
+    <option name="totallyTimeSpent" value="210424000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -564,16 +579,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="34" y="215" width="1720" height="875" extended-state="0" />
+    <frame x="34" y="23" width="1720" height="875" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4964789" visible="true" weight="0.27234805" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4964789" weight="0.27532777" />
       <window_info id="Structure" order="1" sideWeight="0.50180507" weight="0.26281288" />
       <window_info id="Favorites" order="2" sideWeight="0.50352114" weight="0.2634088" />
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3276316" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4355263" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.48289475" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4355263" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29473683" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32894737" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32894737" />
@@ -589,13 +604,13 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4964789" weight="0.26638857" />
-      <window_info id="Structure" order="1" sideWeight="0.50180507" visible="true" weight="0.26281288" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4964789" visible="true" weight="0.27532777" />
+      <window_info id="Structure" order="1" sideWeight="0.50180507" weight="0.26281288" />
       <window_info id="Favorites" order="2" sideWeight="0.50352114" weight="0.2634088" />
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3276316" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4355263" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.48289475" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4355263" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29473683" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32894737" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32894737" />
@@ -620,6 +635,17 @@
     <MESSAGE value="Refactoring build_document" />
     <option name="LAST_COMMIT_MESSAGE" value="Refactoring build_document" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/formatters.rb</url>
+          <line>13</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../testgen7/testgen.rb">
@@ -682,13 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/ruby-debug-ide-0.7.0.beta7/lib/ruby-debug-ide.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.rb" />
     <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$USER_HOME$/testgen19/exam.rb">
@@ -706,13 +725,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my_test.rb" />
-    <entry file="file://$PROJECT_DIR$/open.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/nokogiri-1.10.0/lib/nokogiri/version.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -758,27 +770,6 @@
     <entry file="file://$PROJECT_DIR$/tests/questions_test.rb" />
     <entry file="file://$PROJECT_DIR$/xsl/fix_docx.xsl">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/formatters.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/request.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/request_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/minitest-5.11.3/lib/minitest/assertions.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -852,16 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/format_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="374" column="14" selection-start-line="374" selection-start-column="14" selection-end-line="374" selection-end-column="14" />
-          <folding>
-            <element signature="e#88#4461#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/question_test.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -869,17 +850,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/ruby-debug-ide-0.7.0.beta7/lib/ruby-debug-ide.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/question.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="26" selection-end-column="3" />
+          <folding>
+            <element signature="e#50#628#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docx_formatter.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="410" column="77" selection-start-line="410" selection-start-column="77" selection-end-line="410" selection-end-column="77" />
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/open.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/request_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="48" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/format_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/formatters.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding>
+            <element signature="e#3638#3791#0" />
+            <element signature="e#3793#4232#0" />
+            <element signature="e#4234#4894#0" />
+            <element signature="e#4896#5684#0" />
+            <element signature="e#5768#18865#0" />
+            <element signature="e#18875#19977#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testgenerator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="e#577#1281#0" />
+            <element signature="e#1287#1705#0" />
+            <element signature="e#1909#2487#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -10,17 +10,15 @@ require 'zip'
 require 'rmagick'
 
 require_relative 'Formatters'
-require_relative 'Question'
+
+DOCUMENT_ROOT = '/Library/WebServer/Documents/'
+PATH_TO_CSS = '/sieve/css/exam.css'
+PATH_TO_IMAGES = '/mewb7/illustrations/fullsize/'
+PATH_TO_XML = 'questions/MEWB7.xml'
+PATH_TO_MARKDOWN_XSLT = 'xsl/fmp2md.xsl'
 
 class Request
-  DOCUMENT_ROOT = '/Library/WebServer/Documents/'
-  PATH_TO_CSS = '/sieve/css/exam.css'
-  PATH_TO_IMAGES = '/mewb7/illustrations/fullsize/'
-  PATH_TO_XML = 'questions/MEWB7.xml'
-  PATH_TO_MARKDOWN_XSLT = 'xsl/fmp2md.xsl'
-
   attr_accessor :params, :format, :qlist, :labels, :show_answers, :show_pics, :ilist, :unique_illustrations, :alist
-
   def initialize(params = CGI.new.params)
     @params = params
     @format = params['format'].first.to_sym if params.key? 'format'
@@ -54,7 +52,7 @@ class Formatter
     when :docx
       DOCXFormatter.new
     else
-      raise "Unsupported type of exam: #{format}"
+      raise RuntimeError.new("Unsupported type of exam: #{format}")
     end
   end
 end
@@ -62,5 +60,29 @@ end
 class TestGenerator
   def self.generate(exam)
     Formatter.for(exam.format).make(exam)
+  end
+end
+
+class Question
+  # Reads pre-constructed question from database
+
+  attr_reader :qnum
+  QUESTIONS_DB = 'questions/mewb7.sqlite'
+  VALID_FIELDS = %i[html docx ans illustration].freeze
+
+  def initialize(qnum)
+    @qnum = qnum
+  end
+
+  def [](field)
+    raise 'Invalid Field.' unless VALID_FIELDS.include? field
+
+    @db = SQLite3::Database.open(QUESTIONS_DB)
+    @db.execute("SELECT #{field} FROM testdata WHERE qnum = #{@qnum}")[0][0]
+  rescue SQLite3::Exception => e
+    puts "SQLite Exception occurred accessing qnum: #{@qnum}"
+    puts e
+  ensure
+    @db.close if @db
   end
 end

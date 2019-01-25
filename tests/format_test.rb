@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../request'
+require_relative '../testgenerator'
 # frozen_string_literal: true
 
 class FormatTest < Minitest::Test
@@ -35,12 +35,12 @@ class FormatTest < Minitest::Test
   end
 
   def test_format_can_find_image
-    imagepath = Request::DOCUMENT_ROOT + Request::PATH_TO_IMAGES + 'GS-0173.png'
+    imagepath = DOCUMENT_ROOT + PATH_TO_IMAGES + 'GS-0173.png'
     assert File.exist?(imagepath)
   end
 
   def test_format_can_find_css
-    csspath = Request::DOCUMENT_ROOT + Request::PATH_TO_CSS
+    csspath = DOCUMENT_ROOT + PATH_TO_CSS
     assert File.exist?(csspath)
   end
 
