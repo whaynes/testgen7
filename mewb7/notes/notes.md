@@ -1,5 +1,17 @@
 # Steps to get this running
 
+Should be able to 
+1.  git clone the Testgen7 folder to your webserver
+2. Put it in the cgi-executables folder
+3. Move the MEWB& folder into the webserver documents folder
+
+Get all the prerequisites working
+
+
+
+
+
+
 1.	Install xcode
 2.	Install command line tools
 3.	Install needed libraries
@@ -27,9 +39,6 @@ Move files to appropriate places on webserver:
 Make sure that  testgen.rb in cgi-bin has execute permission
     'chmod +x testgen7.rb'
     
-Give apache write permission to output folder:  from testgen7 folder
-
-	'chown _www output'
 	
 Uncomment the following line in /etc/apache2/httpd.conf to enable cgi
 *\#LoadModule cgi_module libexec/apache2/mod_cgi.so*
