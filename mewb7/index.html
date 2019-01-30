@@ -1,0 +1,188 @@
+<html>
+<head>
+    <title>Marine Engineeing Workbook 7th Edition Test Generator</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/Form.css">
+    <script type="text/javascript">
+
+
+        var theDate = new Date();
+        var dateParts = theDate.toString().split(' ');
+        var today = dateParts[1] + " " + dateParts[2] + ", " + dateParts[3];
+        var maxLength = 100;  // arbitrary restriction, must also change in xslt
+        var maxValue = 14427; // questions in database
+
+
+        function randomInt(n) {
+            // returns a random integer between 0 and n-1, inclusive
+            return Math.floor(Math.random() * n)
+        }
+
+        function randomizeArray(a) {
+            // rearranges elements of an array randomly
+            var r1;
+            var temp;
+            for (var i = 0; i < a.length; i++) {
+                r1 = randomInt(a.length);
+                if (r1 != 0) {
+                    temp = a[i];
+                    a[i] = a[r1];
+                    a[r1] = temp;
+                }
+            }
+        }
+
+        function randomArray(size, startVal, endVal) {
+            // returns size unique numbers between startVal and endVal inclusive
+            var a = new Array();
+            var range = endVal - startVal + 1;
+            size = (size <= range) ? size : range;
+
+            for (var i = 0; i < range; i++) {
+                a[i] = i + parseInt(startVal);
+            }
+            randomizeArray(a);
+
+            return a.slice(0, size);
+
+        }
+
+        function doAdd() {
+            with (document.info) {
+                qlist.value += randomArray(_num.value, _start.value, _end.value).toString().replace(/,/g, "\r") + "\r";
+                countQuestions(null);
+            }
+        }
+
+        function countQuestions() {
+            re = /\d+/g;
+            var questions = document.info.qlist.value.match(re);
+            if (questions && questions.length > maxLength) questions = questions.slice(0, maxLength);
+            document.getElementById('q').innerHTML = questions ? questions.length + " Questions" : "0 Questions";
+            return questions.toString().replace(/,/g, "\n") + "\n";
+        }
+
+        function doValidate(o) {
+            if (o.value > maxValue)  o.value = maxValue;
+        }
+
+        function numeric(a, b) {
+            return a - b;
+        }
+
+        function removeDups() {
+            var re = /\d+/g;
+            var questions = document.info.qlist.value.match(re);  //find all  numbers delete all non digits
+            questions.sort(numeric);
+
+            var qlist = new Array();
+            qlist.push(questions[0]);
+            for (var i = 1; i < questions.length; i++) {
+                if (questions[i] != questions[i - 1])
+                    qlist.push(questions[i]);
+            }
+
+            document.info.qlist.value = qlist.toString().replace(/,/g, "\n") + "\n";
+            countQuestions();
+        }
+
+        function scramble() {
+            var re = /\d+/g;
+            var questions = document.info.qlist.value.match(re);  //find all  numbers delete all non digits
+            randomizeArray(questions);
+
+            document.info.qlist.value = questions.toString().replace(/,/g, "\n") + "\n";
+            countQuestions();
+        }
+
+        function fill() {
+            for (var i = 0; i < 10; i++) {
+                document.info.qlist.value += i + " \r"
+            }
+            countQuestions();
+        }
+
+    </script>
+
+</head>
+<body onLoad="document.info.qlist.value='';countQuestions()">
+<noscript>
+    <h1 class="warning">
+        Javascript must be enabled to use this page!
+    </h1>
+</noscript>
+
+
+<form name="info" action="/cgi-bin/testgen7/main.rb" method="post" class="form-style-9">
+    <h1>Marine Engineering Workbook</h1>
+
+    <h2>Test Generator, 7th. Edition</h2>
+
+    <div id='pagehead'>
+        <ul>
+            <li><input type="text" name='labels' class="field-style field-split align-left" placeholder="Exam Name"/>
+                <input type="text" name='labels' value="Name_____________" class="field-style field-split align-right"/>
+            </li>
+            <li>
+                <input type="text" name='labels' class="field-style field-split align-left" placeholder="Course"/>
+                <input type="text" name='labels' id='date' class="field-style field-split align-right">
+                <script type="text/javascript">document.getElementById('date').value = today</script>
+            </li>
+        </ul>
+    </div>
+
+    <p id='add'>
+
+        <input type="button" value="Add" style="width:45px" onclick="doAdd()">&nbsp;
+        <input type="text" name="_num" size="4" maxlength="4" value="10">
+        questions from range
+        <input type="text" name="_start" value="1" size="5" maxlength="5" onKeyUp="doValidate(this)">
+        to
+        <input type="text" value=14427 name="_end" size="5" maxlength="5" onKeyUp="doValidate(this)">.
+    </p>
+
+    <div id='outputOptions' class='right clear'>
+        <p><b>Output Options:</b></p>
+        <ul>
+            <li><input type="radio" name="format" id="xhtml" value='xhtml' checked>Screen .html
+        	<li><input type="radio" name="format" id="docx" value='docx'>Download .docx for MS Word
+        	<li><input type="radio" name="format" id="blackboard" value='blackboard'>Download .txt for Blackboard
+            <li><input type="radio" name="format" id="mmd" value='mmd'>Markdown<br>
+
+            <p></p>
+            <li><input type="checkbox" name="key" checked> Include Answer Key?
+            <li><input type="checkbox" name="illustrations" checked> Include Illustrations?
+        </ul>
+    </div>
+
+    <div id='quizParams'>
+        <textarea name="qlist" rows="12" onKeyUp="countQuestions()" onBlur="document.info.qlist.value=countQuestions()"
+                  placeholder='Enter some question numbers.'></textarea>
+
+        <p id='q'>0 Questions</p>
+    </div>
+
+    <ul>
+        <li><input type="button" id="Scramble" onclick="scramble()" value="Scramble " class='align-left field-split'>
+            <input type="button" id="reset" onclick="document.info.qlist.value='';countQuestions()" value="Start Over"
+                   class='align-right field-split'>
+        <li><input type="button" id="dups" onclick="removeDups()" value="Delete Duplicates &amp; Sort"
+                   class='align-left field-split'>
+            <input type='submit' name='Make_Exam' value='Make Exam' class='align-right field-split'>
+    </ul>
+
+    <p id='debug' style="margin-top:40px; display:none">
+        Debugging: <br>
+        <input type="radio" name="format" id="form" value='form'> CGI Data
+        <input type="radio" name="format" id="source" value='xhtml_source'> XHTML source
+        <input type="radio" name="format" id="bb_source" value='bb_source'> blackboard Source
+        <input type="radio" name="format" id="xml" value='xml'> XML
+        <input type="radio" name="format" id="mmd" value='mmd'> Markdown
+        <input type="radio" name="format" id="docx" value='docx'>Download .docx for MS Word    
+    </p>
+
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+font: 10pt  Times, "Times New Roman", Georgia, serif;
+margin: 8px .5in 0 .75in;
+max-width:8in;
+}
+
+ /*section headers needed to validate, but we don't want to see them  */
+
+/* Header */
+header {margin-bottom: 1em;}
+header div.left {width:50%; float:left; text-align:left; }
+header div.right {width:50%; float:right; text-align:right; }
+header{overflow:auto;}     /* required so empty div.left wont cause flow problems */
+
+/* Answer Table */
+
+#answers table{
+	border-collapse: collapse;
+}
+#answers th{
+	padding-right: 2em;
+}
+#answers td {
+	padding:2px;
+}
+#answers tr.odd {
+	background-color: #d9e4e7;
+	}
+section#answers {margin: 4em 0; page-break-after: always}
+
+/* Stem */
+
+#test .question{
+	margin: 20px 0;
+	page-break-inside: avoid;
+}
+
+blockquote{
+	margin-left: 20px;
+}
+#test em {
+	display: block;
+	float: right;
+}
+
+	
+#test li table {
+	margin: 10px;
+}
+
+/* Choices */
+
+#test ol ol {
+	margin-left: 3ex;
+}
+
+li li:first-child{
+margin-top: 10px;
+}
+
+/* Illustrations */
+
+figure {
+	width: 45%;
+	text-align: center;
+	page-break-inside: avoid;
+	font-weight: bold;
+	font-size: larger;
+	display: inline-block;
+	margin-bottom: 2em;
+	margin-right: 2%;
+	}
+img {
+	width: 100%;
+	}
+
+

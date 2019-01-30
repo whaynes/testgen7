@@ -1,0 +1,27 @@
+The illustrations folder contains
+
+1.	The illustrations used by the test generator at the top level
+	All are pngs
+	All have been resized to 800 px maximum width.
+2.	The thumbs directory- containing 100x100 px thumbnails
+2.	The _fullsize director - containing the original images_cropped from the mewb converted to png if necessary
+
+
+
+to convert all jpg in folder to pngs:
+
+mogrify -format png *.jpg
+
+to make thumbnails of all png images in the folder, and put them into an existing 'thumbs' folder:
+
+mogrify -path thumbs -thumbnail 200x200 *.png
+
+To convert all thumbnails to the same size, use:
+
+mogrify -gravity center -background white -extent 200x200 *.png
+
+To convert all large images to 500 px width max
+
+mogrify -path small -resample 300 -resize 800x\> *.png
+
+Note: mogrify is destructive!! unless writing to folder designated by -path (which must exist)
