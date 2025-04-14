@@ -102,7 +102,7 @@ class FormatTest < Minitest::Test
       <li>condensation</li>
       </ol>
       </li><li class="question 2">
-      <p><!-- mewb7: 10635 ans: A -->If the regulating valve V4 shown in the illustration vibrated open, which of the following alarm conditions would be indicated at the program unit panel? <em>See illustration <a href="http://weh.maritime.edu/mewb7/illustrations/fullsize/MO-0127.png">MO-0127</a>.</em></p>
+      <p><!-- mewb7: 10635 ans: A -->If the regulating valve V4 shown in the illustration vibrated open, which of the following alarm conditions would be indicated at the program unit panel? <em>See illustration <a href="https://weh.maritime.edu/mewb7/illustrations/fullsize/MO-0127.png">MO-0127</a>.</em></p>
       <ol type="a">
       <li>Low pressure in oil outlet.</li>
       <li>Low oil temperature after preheater.</li>
