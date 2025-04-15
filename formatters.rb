@@ -40,6 +40,7 @@ class SourceFormatter < TextFormatter
     html = Nokogiri::HTML5::Document.parse '<!DOCTYPE html><html>'
     head = html.at_css('head')
     head.add_child "<link rel='stylesheet' href='#{PATH_TO_CSS}' />"
+    head.add_child "<meta charset='utf-8'>"
     body = html.at_css('body')
     body.add_child page_header(exam)
     body.add_child answers(exam) if exam.show_answers
@@ -96,7 +97,7 @@ class SourceFormatter < TextFormatter
   def question(q, i)
     # gets question from database, returns nokogiri node
     question = Question.new(q)[:html] # get <li><stem><choices></li>
-    question.gsub!(/!-- 1\./, '!--') # remove 1. from comment
+    question = question.gsub(/!-- 1\./, '!--') # remove 1. from comment
     question = Nokogiri::XML::DocumentFragment.parse question
     question.at_css('li')[:class] = "question #{i + 1}" # add css class
     question
