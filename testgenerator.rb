@@ -11,7 +11,7 @@ require 'rmagick'
 
 require_relative 'formatters'
 
-DOCUMENT_ROOT = '/var/www/html/weh/'
+DOCUMENT_ROOT = '/var/www/weh'
 PATH_TO_CSS = '/mewb7/css/exam.css'
 PATH_TO_IMAGES = '/mewb7/illustrations/fullsize/'
 PATH_TO_XML = 'questions/MEWB7.xml'
