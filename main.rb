@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 require_relative 'testgenerator'
 
@@ -13,9 +13,10 @@ require_relative 'testgenerator'
 # The test folder contains functional tests
 #
 # When moved to a different serve, update paths in testgenerator.rb
+# Valid Formats: form, xhtml, xhtml_source, xml, mmd, blackboard, docx
 
 begin
-  params = {'labels' => ['DUMMY PARAMETERS', 'Name_____________', '', 'Jan 05, 2019'], '_num' => ['10'], '_start' => ['1'], '_end' => ['14427'], 'format' => ['docx'], 'key' => ['on'], 'qlist' => ["2107\r\n10635\r\n11112\r\n7147\r\n"], 'Make_Exam' => ['Make Exam']}
+  params = {'labels' => ['DUMMY PARAMETERS', 'Name_____________', '', 'Jan 05, 2019'], '_num' => ['10'], '_start' => ['1'], '_end' => ['14427'], 'format' => ['blackboard'], 'key' => ['on'], 'qlist' => ["2107\r\n10635\r\n11112\r\n7147\r\n"], 'Make_Exam' => ['Make Exam']}
   exam = Request.new() # pass params to debug.
   TestGenerator.generate(exam)
 rescue StandardError => e
