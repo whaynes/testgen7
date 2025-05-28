@@ -38,6 +38,8 @@ class SourceFormatter < TextFormatter
   # this class builds the html source for the exam, but returns it as text
   def build(exam)
     html = Nokogiri::HTML5::Document.parse '<!DOCTYPE html><html>'
+    root=html.at_css('html')
+    root.add_namespace_definition(nil, "http://www.w3.org/1999/xhtml")
     head = html.at_css('head')
     head.add_child "<link rel='stylesheet' href='#{PATH_TO_CSS}' />"
     head.add_child "<meta charset='utf-8'>"
@@ -176,16 +178,39 @@ end
 class BBFormatter < TextFormatter
   # this class converts the html version to a version for import into blackboard
   def build(exam)
-    xhtml = SourceFormatter.new.build(exam)
+    xhtml =SourceFormatter.new.build(exam)
+    xml=convert_utf8_to_latin1(xhtml) #deal with some specific characters
     xml = Nokogiri::XML(xhtml)
     xslt = Nokogiri::XSLT File.read('./xsl/html2bb.xsl')
-    doc = xslt.apply_to(xml, Nokogiri::XSLT.quote_params(['include_illustrations', exam.show_pics]))
-    munge(doc).encode(Encoding::ISO_8859_1) # return value, note blackboard expects windows latin 1 encoding
+    bb = xslt.apply_to(xml, Nokogiri::XSLT.quote_params(['include_illustrations', exam.show_pics]))
+    bb.encode("ISO-8859-1", undef: :replace, replace: "?")
   end
 
-  def munge(bb)
-    bb.gsub(/₂/, '<sub>2</sub>') # replace unicode subscript 2 which cant be represented in encoding 8859-1
-  end
+ 
+
+  def convert_utf8_to_latin1(str)
+    char_map = {
+      # Curly quotes
+      "“" => '"',
+      "”" => '"',
+      "‘" => "'",
+      "’" => "'",
+    
+      # En/em dashes
+      "–" => "-",  # en-dash
+      "—" => "--", # em-dash
+    
+      # Subscript digits
+      "₁" => "<sub>1</sub>",
+      "₂" => "<sub>2</sub>",
+      "₃" => "<sub>3</sub>",
+      }
+    char_map.each do |utf8_char, replacement|
+      str= str.gsub(utf8_char, replacement)
+    end
+    str
+  end 
+
 
   def make(exam)
     print "Content-type: text/text; charset=ISO8859-1\n"
